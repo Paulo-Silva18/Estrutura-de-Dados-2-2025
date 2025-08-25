@@ -1,15 +1,51 @@
-def insertion_sort_original(lista):
-    lista_ordenada = []
-    lista_a_ordenar = lista.copy()
-    n = len(lista_a_ordenar)
+import time
 
-    for i in range(n):
-        menor = min(lista_a_ordenar)
-        lista_ordenada.insert(i, menor)
-        lista_a_ordenar.remove(menor)
+def insertion_sort(lista):
+    iteracoes_externas = 0
+    comparacoes_e_deslocamentos = 0
 
-    return lista_ordenada
+    for i in range(1, len(lista)):
+        iteracoes_externas += 1
+        chave = lista[i]
+        j = i - 1
 
-vet_pequeno = [42, 28, 9, 1, 45, 18, 19, 33, 31, 14, 5, 34, 4, 37, 12, 12, 13, 23, 44, 11, 6, 3, 29, 10, 25, 43, 8, 30, 50, 47, 42]
+        while j >= 0 and chave < lista[j]:
+            comparacoes_e_deslocamentos += 1
+            lista[j + 1] = lista[j]
+            j -= 1
+        
+        lista[j + 1] = chave
 
-print(insertion_sort_original(vet_pequeno))
+    return (iteracoes_externas, comparacoes_e_deslocamentos)
+
+import random
+
+tamanho_vetor = 1000
+
+vetor_aleatorio = [random.randint(0, tamanho_vetor * 10) for _ in range(tamanho_vetor)]
+
+vetor_ordenado = sorted(vetor_aleatorio)
+
+copia_aleatorio = vetor_aleatorio.copy()
+copia_ordenado = vetor_ordenado.copy()
+
+print("--- Analisando Vetor Aleatório ---")
+start_time = time.perf_counter()
+stats_aleatorio = insertion_sort(copia_aleatorio)
+end_time = time.perf_counter()
+
+print(f"Tempo de execução: {end_time - start_time:.6f} segundos")
+print(f"Iterações do laço externo: {stats_aleatorio[0]}")
+print(f"Comparações e deslocamentos (laço interno): {stats_aleatorio[1]}")
+print("-" * 35)
+
+
+print("\n--- Analisando Vetor Já Ordenado ---")
+start_time = time.perf_counter()
+stats_ordenado = insertion_sort(copia_ordenado)
+end_time = time.perf_counter()
+
+print(f"Tempo de execução: {end_time - start_time:.6f} segundos")
+print(f"Iterações do laço externo: {stats_ordenado[0]}")
+print(f"Comparações e deslocamentos (laço interno): {stats_ordenado[1]}")
+print("-" * 35)
