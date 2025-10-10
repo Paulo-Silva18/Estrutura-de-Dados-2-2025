@@ -1,29 +1,14 @@
-def insertion_sort(array):
+def insertion_sort_por_comprimento(array):
     n = len(array)
     for i in range(1, n):
-        chave = array[i]
+        chave_string = array[i]
         j = i - 1
-        while j >= 0 and array[j] > chave:
+        while j >= 0 and len(array[j]) > len(chave_string):
             array[j + 1] = array[j]
             j -= 1
-        array[j + 1] = chave  
-    return array 
-
-
-def lista_numerica(array):
-    l = []
-    ls = []
-    for i in array:
-        n = len(i)
-        l.append(n)
-    lista_ordenada = insertion_sort(l)
-    for j in array:
-        n = len(j)
-        print(n)
-        
+        array[j + 1] = chave_string
     return array
-    
-    
 
 lista = ['Ana', 'Lu', 'Roberto']
-lista_numerica(lista)
+lista_ordenada = insertion_sort_por_comprimento(lista)
+print(lista_ordenada)
