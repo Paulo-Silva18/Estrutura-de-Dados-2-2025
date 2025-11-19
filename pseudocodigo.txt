@@ -1,0 +1,55 @@
+classe No:
+    função inicializador(primeiro parametro da classe, valor):
+    valor do primeiro parametro da classe = valor
+    valor esquerda do primeiro parametro da classe = nada
+    valor direita do primeiro parametro da classe = nada
+    valor altura do primeiro parametro da classe = 1
+
+    função obter altura(parametro no):
+        se no for falso:
+            retorna 0
+        retorna altura do no
+
+    função obter fator de balanceamento(parametro no):
+        se no for falso:
+            retorna 0
+        retorna função obter altura(esquerda do no) - função obter altura(diretia do no)
+    
+    função rotação da direita(y):
+        x = esquerda de y
+        T2 = direita de x
+
+        direita de x = y
+        esquerda de y = T2
+
+        altura de y = 1 + função valor maximo da função obter altura(esquerda de y), obter altura(direita de y) 
+        altura de x = 1 + função valor maximo da função obter altura(esquerda de x), obter altura(direita de x) 
+
+        retorna x
+
+    função rotação da esquerda(x):
+        y = direita de x
+        T2 = esquerda de y
+
+        esquerda de y = x
+        direita de x = T2
+
+        altura de x = 1 + função valor maximo da função obter altura(esquerda de x), obter altura(direita de x) 
+        altura de y = 1 + função valor maximo da função obter altura(esquerda de y), obter altura(direita de y) 
+
+        retorna y
+    
+    função inserir(no, valor):
+        se no for falso:
+            retorna classe No(valor)
+        
+        se valor for < valor do no:
+            esquerda do no = função inserir(esquerda do no, valor)
+        senão se valor for > valor do no:
+            direita do no = função inserir(direita do no, valor)
+        senão:
+            retorna no
+        
+        altura do no = 1 + função valor maximo da função obter altura(esquerda do no), função obter altura(direita do no)
+
+        fator balanceado = função obter fator balanceamento(no)    
