@@ -53,3 +53,53 @@ classe No:
         altura do no = 1 + função valor maximo da função obter altura(esquerda do no), função obter altura(direita do no)
 
         fator balanceado = função obter fator balanceamento(no)    
+
+        se fator balanceado for > que 1 e valor for < que valor da esquerda do no:
+            retorna função rotação da direita(no)
+        se fator balanceado for < que -1 e valor for > que valor da direita do no:
+            retorna função rotação da esquerda(no)
+        se fator balanceado for > que 1 e valor for < que valor da esquerda do no:
+            esquerda do no = função rotação da esquerda(esquerda do no)
+            retorna função rotação da direita(no)
+        se fator balanceado for < que -1 e valor for < que valor da direita do no:
+            direita do no = função rotação da direita(direita do no)
+            retorna rotação da esquerda(no)
+
+        retorna no 
+
+    função imprimir arvore(no, nivel=0, prefixo="Raiz: "):
+        se no não for nada:
+            printe(" " * (nivel * 4) + prefixo + str(valor do no) + 
+              f" (A:{altura do no}, B:{função obter fator de balanceamento(no)})")      
+
+            se esquerda do no não for nada ou direita do no não for nada:
+                se esquerda do no for verdadeiro:
+                    função imprimir arvore(esquerda do no, nivel + 1, "E: ")
+                senão:
+                    printe(" " * ((nivel + 1) * 4) + "E: Vazio")
+                se direita do no for verdadeiro:
+                    função imprimir arvore(direita do no, nivel + 1, "D: ")
+                senão:
+                    printe(" " * ((nivel + 1) * 4) + "D: Vazio")
+
+    se nome for == "projeto main":
+        raiz = nada
+
+        printe("--- Exemplo 1: Rotação Simples (Direita-Direita) ---")
+        valores_rr = [10, 20, 30]
+
+        para val em valores_rr:
+            printe(f"\nInserindo {val}...")
+            raiz = função inserir(raiz, val)
+            função imprimir arvore(raiz)
+
+        printe("\n" + "="*40 + "\n")
+        printe("--- Exemplo 2: Rotação Dupla (Esquerda-Direita) ---")
+        
+        raiz = nada
+        valores_lr = [30, 10, 20]
+
+        para val em valores_lr:
+            printe(f"\nInserindo {val}...")
+            raiz = inserir(raiz, val)
+            função imprimir arvore(raiz)
